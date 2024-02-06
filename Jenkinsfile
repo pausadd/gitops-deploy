@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Uncomment to get lots of debugging output
-                    openshift.logLevel(1)
+                    // openshift.logLevel(1)
                     openshift.withCluster() {
                         echo("Create project ${env.PRJ}") 
                         openshift.newProject("${env.PRJ}")
@@ -22,8 +22,8 @@ pipeline {
                             echo('Grant to developer read access to the project')
                             openshift.raw('policy', 'add-role-to-user', 'view', 'developer')
                             echo("Create app ${env.APP}") 
-                            //openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}")
-                            openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}", "--certificate-authority=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem", "--insecure-skip-tls-verify")
+                            openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}")
+                            //openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}", "--certificate-authority=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem", "--insecure-skip-tls-verify")
                         }
                     }
                 }
