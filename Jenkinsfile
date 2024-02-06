@@ -23,7 +23,7 @@ pipeline {
                             openshift.raw('policy', 'add-role-to-user', 'view', 'developer')
                             echo("Create app ${env.APP}") 
                             //openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}")
-                            openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}" "--certificate-authority=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem")
+                            openshift.newApp("${env.GIT_URL}#${env.BRANCH_NAME}", "--strategy source", "--name ${env.APP}", "--certificate-authority=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem")
                         }
                     }
                 }
